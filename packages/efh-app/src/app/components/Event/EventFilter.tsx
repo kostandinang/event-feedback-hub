@@ -11,11 +11,11 @@ import {
 import {} from "@/graphql/feedback";
 import { Event } from "efh-core";
 
-export type FeedbackFilterProps = {
+export type EventFilterProps = {
   events: Event[];
 };
 
-export default function FeedbackFilter(props: FeedbackFilterProps) {
+export default function EventFilter(props: EventFilterProps) {
   const { events } = props;
   const { filterEventId, setFilterEventId } = useStore();
 

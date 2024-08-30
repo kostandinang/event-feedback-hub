@@ -5,7 +5,7 @@ import { gql, ApolloProvider, useQuery } from "@apollo/client";
 import FeedbackItem from "./Feedback/FeedbackItem";
 import EventList from "./Event/EventList";
 import FeedbackList from "./Feedback/FeedbackList";
-import FeedbackFilter from "./Feedback/FeedbackFilter";
+import FeedbackFilter from "./Feedback/FeedbackFilters";
 import { GET_EVENTS } from "@/graphql/event";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Tabs, TabsContent, TabsTrigger } from "@/components/ui/tabs";
@@ -26,7 +26,7 @@ export default function Hub() {
   };
 
   return (
-    <div className="w-[80%] mx-auto top-">
+    <div className="w-[90%] mx-auto top-">
       <Tabs
         defaultValue={activeTab}
         className="mt-4 w-full"
