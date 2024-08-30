@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "target": "ESNext",
+    "module": "ESNext",
+    "esModuleInterop": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "experimentalDecorators": true,
+    "baseUrl": "."
+  },
+  "paths": {
+    "efh-core/*": ["packages/efh-core/*"]
+  },
+  "include": ["**/*.ts", "packages/**/*"],
+  "exclude": ["node_modules"]
+}
