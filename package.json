@@ -1,0 +1,52 @@
+{
+  "name": "event-feedback-hub",
+  "version": "1.0.0",
+  "description": "Event Feedback Hub Assignment",
+  "main": "index.js",
+  "author": "kostandinang",
+  "license": "ISC",
+  "type": "module",
+  "engines": {
+    "node": "20.x"
+  },
+  "workspaces": [
+    "packages/efh-core",
+    "packages/efh-app",
+    "packages/efh-wss"
+  ],
+  "scripts": {
+    "build": "lerna run build",
+    "start": "lerna run start",
+    "dev": "lerna run dev",
+    "links": "lerna ls --all",
+    "clean": "lerna clean",
+    "start:app": "lerna --scope efh-app run start",
+    "start:wss": "lerna --scope efh-wss run start",
+    "dev:app": "lerna --scope efh-app run dev",
+    "dev:wss": "lerna --scope efh-wss run dev",
+    "build:app": "lerna --scope efh-app run build",
+    "build:core": "lerna --scope efh-core run build",
+    "build:wss": "lerna --scope efh-wss run build"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "lerna": "^8.1.8",
+    "prisma": "^5.19.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.4"
+  },
+  "dependencies": {
+    "@apollo/server": "^4.11.0",
+    "@as-integrations/next": "^3.1.0",
+    "@prisma/client": "^5.19.0",
+    "apollo-server-errors": "^3.3.1",
+    "class-validator": "^0.14.1",
+    "graphql-subscriptions": "^2.0.0",
+    "prisma": "^5.19.0",
+    "reflect-metadata": "^0.2.2",
+    "ts-node": "^10.9.2",
+    "type-graphql": "^2.0.0-rc.2",
+    "typescript": "^5.5.4",
+    "zod": "^3.23.8"
+  }
+}

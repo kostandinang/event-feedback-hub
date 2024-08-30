@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "outDir": "./build",
+    "rootDir": "./packages",
+    "target": "ESNext",
+    "module": "ESNext",
+    "declaration": true,
+    "strict": true,
+    "esModuleInterop": true
+  },
+  "include": ["packages/**/*"],
+  "exclude": ["node_modules", "build"]
+}
