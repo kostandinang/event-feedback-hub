@@ -7,6 +7,7 @@ import { useStore } from "@/app/store";
 import FeedbackItem from "./FeedbackItem";
 import { Feedback, Event } from "efh-core";
 import { EventFeedback } from "@/app/types";
+import FeedbackNotifications from "./FeedbackNotifications";
 
 type FeedbackListProps = {};
 
@@ -28,21 +29,18 @@ export default function FeedbackList(props: FeedbackListProps) {
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
-
   if (!data) return null;
 
   return (
-    <ul className="flex flex-col gap-4 mt-4 h-max overflow-auto">
-      {data.feedbacks.map((feedback: EventFeedback) => (
-        <li key={feedback.id.toString()}>
-          <FeedbackItem feedback={feedback} />
-        </li>
-      ))}
-      {data.feedbacks.map((feedback: EventFeedback) => (
-        <li key={feedback.id.toString()}>
-          <FeedbackItem feedback={feedback} />
-        </li>
-      ))}
-    </ul>
+    <>
+      <FeedbackNotifications feedbacks={data.feedbacks} />
+      <ul className="flex flex-col gap-4 mt-4 h-max overflow-auto">
+        {data.feedbacks.map((feedback: EventFeedback) => (
+          <li key={feedback.id.toString()}>
+            <FeedbackItem feedback={feedback} />
+          </li>
+        ))}
+      </ul>
+    </>
   );
 }

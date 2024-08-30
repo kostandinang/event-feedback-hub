@@ -26,7 +26,7 @@ export default function Hub() {
   };
 
   return (
-    <div className="w-[80%] mx-auto top-0">
+    <div className="w-[80%] mx-auto top-">
       <Tabs
         defaultValue={activeTab}
         className="mt-4 w-full"
@@ -37,9 +37,6 @@ export default function Hub() {
             <span className="flex">
               <span className=" text-blue-500">Feedback</span>Hub
             </span>
-            {/* <span className="text-sm text-gray-500">
-            Find and review amazing events
-          </span> */}
           </h1>
           {activeTab == "feedbacks" && <FeedbackFilter events={data.events} />}
         </div>

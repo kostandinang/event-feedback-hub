@@ -19,7 +19,6 @@ export default function FeedbackForm() {
 
   return (
     <div>
-      <h3>New Feedback Submitted:</h3>
       {feedback && (
         <>
           <p>ID: {feedback.id}</p>

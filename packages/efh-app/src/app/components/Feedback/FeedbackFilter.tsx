@@ -27,7 +27,7 @@ export default function FeedbackFilter(props: FeedbackFilterProps) {
     <div className="flex flex-row gap-2">
       <Select value={filterEventId} onValueChange={handleChange}>
         <SelectTrigger className="w-[220px]">
-          <SelectValue placeholder="Select an event" />
+          <SelectValue placeholder="Filter by event" />
         </SelectTrigger>
         <SelectContent>
           {events.map((event: Event) => (

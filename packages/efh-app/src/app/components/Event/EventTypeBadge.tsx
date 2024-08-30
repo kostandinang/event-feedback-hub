@@ -16,7 +16,7 @@ export const EventTypeBadge: React.FC<BadgeProps> = ({ type }) => {
 
   return (
     <span
-      className={`text-center inline w-max px-2 py-2 text-xss font-xss rounded-full ${badgeColor}`}
+      className={`text-center inline w-max px-4 py-2 text-xs font-xs rounded-full ${badgeColor}`}
     >
       {type.charAt(0).toUpperCase() + type.slice(1)}
     </span>
