@@ -1,8 +1,7 @@
 "use client";
 
 import { client } from "@/lib/apollo-client";
-import { gql, ApolloProvider, useQuery } from "@apollo/client";
-import FeedbackItem from "./Feedback/FeedbackItem";
+import { gql, useQuery } from "@apollo/client";
 import EventList from "./Event/EventList";
 import FeedbackList from "./Feedback/FeedbackList";
 import FeedbackFilter from "./Feedback/FeedbackFilters";

@@ -1,12 +1,9 @@
 import { useStore } from "@/app/store";
 import { EventFeedback } from "@/app/types";
-import {
-  SUBMIT_FEEDBACK_MUTATION,
-  SUBMITTED_FEEDBACK_SUBSCRIPTION,
-} from "@/graphql/feedback";
-import { useSubscription } from "@apollo/client";
-import { Feedback } from "efh-core";
-import { useEffect, useState } from "react";
+import { SUBMITTED_FEEDBACK_SUBSCRIPTION } from "@/graphql/feedback";
+import { gql, useSubscription } from "@apollo/client";
+
+import { useEffect } from "react";
 import { toast } from "sonner";
 
 export type FeedbackNotificationsProps = {
@@ -20,10 +17,32 @@ export default function FeedbackNotifications(
 
   const { data, loading, error } = useSubscription<{
     submittedFeedback: EventFeedback;
-  }>(SUBMITTED_FEEDBACK_SUBSCRIPTION);
+  }>(SUBMITTED_FEEDBACK_SUBSCRIPTION, {
+    onData: ({ client, data: subscriptionData }) => {
+      const newFeedback = subscriptionData.data?.submittedFeedback;
+      client.cache.modify({
+        fields: {
+          feedbacks(existingFeedbacks = []) {
+            const newFeedbackRef = client.cache.writeFragment({
+              data: newFeedback,
+              fragment: gql`
+                fragment NewFeedback on Feedback {
+                  id
+                  text
+                  eventId
+                }
+              `,
+            });
+            return [newFeedbackRef, ...existingFeedbacks];
+          },
+        },
+      });
+    },
+  });
 
   useEffect(() => {
     if (data?.submittedFeedback) {
+      debugger;
       const newFeedback = data.submittedFeedback;
 
       // Check if the new feedback is already in the existing feedbacks
@@ -33,10 +52,10 @@ export default function FeedbackNotifications(
 
       if (isNewFeedback) {
         // Show a toast notification for the new feedback
-        toast.success(`New feedback received ${newFeedback.text}`);
+        toast.success(`New feedback received`);
 
-        // Optionally update the feedbacks list
-        setFeedbacks([...feedbacks, newFeedback]);
+        // Update the local feedbacks list
+        setFeedbacks([...feedbacks, newFeedback].reverse());
       }
     }
 
@@ -45,21 +64,21 @@ export default function FeedbackNotifications(
     }
   }, [data, error, feedbacks, setFeedbacks]);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
+  if (loading)
+    return (
+      <p className="absolute top-[0] right-[0] mt-32 mr-24 animate-pulse">
+        Awaiting feedback ...
+      </p>
+    );
+
+  if (error)
+    return (
+      <p className="text-red-500 animate-pulse absolute top-[0] right-[0] mt-32 mr-24">
+        Error: {error.message}
+      </p>
+    );
 
   const feedback = data?.submittedFeedback;
 
-  return (
-    <div>
-      {feedback && (
-        <>
-          <p>ID: {feedback.id}</p>
-          <p>Text: {feedback.text}</p>
-          <p>Rating: {feedback.rating}</p>
-          <p>Event ID: {feedback.eventId}</p>
-        </>
-      )}
-    </div>
-  );
+  return null;
 }

@@ -47,6 +47,9 @@ export default function FeedbackForm(props: FeedbackFormProps) {
           feedbackText,
         },
       });
+      // Set defaults
+      setRating(5);
+      setFeedbackText("");
       if (data) {
         console.log("Feedback submitted:", data);
       }
@@ -76,9 +79,11 @@ export default function FeedbackForm(props: FeedbackFormProps) {
           />
         </DrawerHeader>
         <DrawerFooter>
-          <Button onClick={handleSubmit}>Submit</Button>
           <DrawerClose>
-            <Button variant="outline">Cancel</Button>
+            <div className="flex gap-2">
+              <Button onClick={handleSubmit}>Submit</Button>
+              <Button variant="outline">Cancel</Button>
+            </div>
           </DrawerClose>
         </DrawerFooter>
       </DrawerContent>

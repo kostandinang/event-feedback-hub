@@ -30,7 +30,7 @@ export class FeedbackResolver {
     @Arg("eventId", () => String, { nullable: true }) eventId?: string,
     @Arg("rating", () => Int, { nullable: true }) rating?: number,
     @Arg("skip", () => Int, { nullable: true, defaultValue: 0 }) skip?: number,
-    @Arg("take", () => Int, { nullable: true, defaultValue: 10 }) take?: number
+    @Arg("take", () => Int, { nullable: true, defaultValue: 100 }) take?: number
   ) {
     try {
       const where: any = {};
@@ -41,6 +41,9 @@ export class FeedbackResolver {
         where,
         skip,
         take,
+        orderBy: {
+          createdAt: "desc",
+        },
         include: {
           event: true,
         },

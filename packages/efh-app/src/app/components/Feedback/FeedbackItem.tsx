@@ -30,7 +30,7 @@ export default function FeedbackItem(props: FeedbackItemProps) {
         <CardTitle>
           <div className="w-full flex justify-between gap-2">
             <span className="flex gap-2 flex-col">
-              <span>{feedback.event.name}</span>
+              <span>{feedback.event ? feedback.event.name : ""}</span>
             </span>
             <FeedbackRating readonly rating={feedback.rating} />
           </div>
@@ -39,7 +39,9 @@ export default function FeedbackItem(props: FeedbackItemProps) {
       <CardContent>
         <div className="w-full flex justify-between gap-2">
           <CardDescription>{feedback.text}</CardDescription>
-          <EventTypeBadge type={feedback.event.type as EventType} />
+          {feedback.event && (
+            <EventTypeBadge type={feedback.event.type as EventType} />
+          )}
         </div>
       </CardContent>
     </Card>
