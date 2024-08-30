@@ -27,14 +27,14 @@ const submitFeedbackSchema = z.object({
 export class FeedbackResolver {
   @Query(() => [Feedback])
   async feedback(
-    @Arg("eventName", () => String, { nullable: true }) eventName?: string,
+    @Arg("eventId", () => String, { nullable: true }) eventId?: string,
     @Arg("rating", () => Int, { nullable: true }) rating?: number,
-    @Arg("skip", () => Int) skip?: number,
-    @Arg("take", () => Int) take?: number
+    @Arg("skip", () => Int, { nullable: true, defaultValue: 0 }) skip?: number,
+    @Arg("take", () => Int, { nullable: true, defaultValue: 10 }) take?: number
   ) {
     try {
       const where: any = {};
-      if (eventName) where.eventName = eventName;
+      if (eventId) where.eventId = eventId;
       if (rating) where.rating = rating;
 
       return await client.feedback.findMany({

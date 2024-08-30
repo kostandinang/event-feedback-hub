@@ -1,12 +1,14 @@
 import { createGraphqlSchema } from "./graphql";
 import { pubSub } from "./lib/pubsub";
-import { EventResolver } from "./modules/event/resolvers";
-import { Event } from "./modules/event/types";
-import { FeedbackResolver } from "./modules/feedback/resolvers";
-import { Feedback } from "./modules/feedback/types";
-import { UserResolver } from "./modules/user/resolvers";
-import * as UserServices from "./modules/user/services";
-import { User } from "./modules/user/types";
+import { EventResolver } from "./pkg/event/resolvers";
+import { Event } from "./pkg/event/types";
+import { FeedbackResolver } from "./pkg/feedback/resolvers";
+import { Feedback } from "./pkg/feedback/types";
+import { UserResolver } from "./pkg/user/resolvers";
+import * as UserServices from "./pkg/user/services";
+import { User } from "./pkg/user/types";
+
+export type { User, Event, Feedback };
 
 interface Core {
   graphql: {
