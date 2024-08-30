@@ -1,5 +1,7 @@
 # Event Feedback Hub
 
+##### [📺 Walktrough video](https://www.loom.com/share/75c057ac24024a6a8430414d7859a9c7?sid=ef4318bd-665e-477e-b9ee-936cf7e5255a)
+
 ## Development Roadmap
 
 1. **System Architecture Design**
