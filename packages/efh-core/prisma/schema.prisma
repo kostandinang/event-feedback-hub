@@ -1,0 +1,84 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id       String         @id @default(cuid())
+  githubId Int            @unique
+  username String
+  github   GitHubAccount?
+  feedback Feedback[]
+  session  Session[]
+
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @default(now()) @map(name: "updated_at")
+
+  @@index([id])
+  @@map(name: "users")
+}
+
+model GitHubAccount {
+  id       String @id @default(cuid())
+  githubId Int
+
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([id])
+  @@map(name: "github_accounts")
+}
+
+model Session {
+  id        String   @id @default(cuid())
+  userId    String
+  expiresAt DateTime
+
+  user User @relation(references: [id], fields: [userId], onDelete: Cascade)
+
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @default(now()) @map(name: "updated_at")
+
+  @@index([id])
+  @@map(name: "sessions")
+}
+
+model Event {
+  id       String     @id @default(cuid())
+  name     String
+  type     String
+  date     DateTime
+  feedback Feedback[]
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime? @map("deleted_at")
+
+  @@index([id])
+  @@map(name: "events")
+}
+
+model Feedback {
+  id     String @id @default(cuid())
+  text   String
+  rating Int
+
+  userId  String
+  user    User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  eventId String
+  event   Event  @relation(fields: [eventId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  @@index([id])
+  @@map(name: "feedbacks")
+}
