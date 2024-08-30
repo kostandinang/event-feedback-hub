@@ -10,7 +10,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import {} from "@/graphql/feedback";
-import { useEffect } from "react";
 
 const starRatings: StarRating[] = [
   { value: 1, label: "Poor" },
@@ -31,11 +30,11 @@ export default function FeedbackRatingFilter() {
   return (
     <Select value={filterRating?.toString()} onValueChange={handleChange}>
       <SelectTrigger className="w-[220px]">
-        <SelectValue placeholder="Filter by ⭐" />
+        <SelectValue placeholder="Filter by rating" />
       </SelectTrigger>
       <SelectContent>
         <SelectItem key={"0"} value={"0"}>
-          All
+          All ratings
         </SelectItem>
         {starRatings.map((rating) => (
           <SelectItem key={rating.value} value={rating.value.toString()}>

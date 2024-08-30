@@ -22,7 +22,7 @@ export const useStore = create<Store>((set) => ({
   filterEventId: undefined,
   setFilterEventId: (eventId: string) => set({ filterEventId: eventId }),
 
-  filterRating: 1,
+  filterRating: 0,
   setFilterRating: (rating: number) => set({ filterRating: rating }),
 
   feedbacks: [],
