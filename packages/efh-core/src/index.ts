@@ -8,6 +8,8 @@ import { UserResolver } from "./pkg/user/resolvers";
 import { getGuestUser } from "./pkg/user/services";
 import { User } from "./pkg/user/types";
 
+export type { User, Event, Feedback };
+
 interface Core {
   graphql: {
     schema: typeof createGraphqlSchema;

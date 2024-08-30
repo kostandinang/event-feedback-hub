@@ -26,7 +26,7 @@ const submitFeedbackSchema = z.object({
 @Resolver()
 export class FeedbackResolver {
   @Query(() => [Feedback])
-  async feedback(
+  async feedbacks(
     @Arg("eventId", () => String, { nullable: true }) eventId?: string,
     @Arg("rating", () => Int, { nullable: true }) rating?: number,
     @Arg("skip", () => Int, { nullable: true, defaultValue: 0 }) skip?: number,
