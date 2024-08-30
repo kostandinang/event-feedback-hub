@@ -28,7 +28,6 @@ export const SUBMIT_FEEDBACK_MUTATION = gql`
       eventId: $eventId
     ) {
       id
-
       eventId
       rating
       text

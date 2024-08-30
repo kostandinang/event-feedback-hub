@@ -12,6 +12,7 @@ import {
 import EventTypeBadge from "./EventTypeBadge";
 import { EventType } from "@/app/types";
 import { toLocaleDate } from "@/lib/utils";
+import FeedbackForm from "../Feedback/FeedbackForm";
 
 export type EventItem = {
   event: Event;
@@ -36,8 +37,14 @@ export default function EventItem(props: EventItem) {
       <CardContent>
         <CardDescription>
           <div className="w-full flex justify-between gap-2">
-            {toLocaleDate(new Date(event.date))}
-            <EventTypeBadge type={event.type as EventType} />
+            <div className="flex gap-2 align-middle items-center">
+              <EventTypeBadge type={event.type as EventType} />
+              <span>{toLocaleDate(new Date(event.date))}</span>
+            </div>
+
+            <div className="flex gap-2">
+              <FeedbackForm eventId={event.id} />
+            </div>
           </div>
         </CardDescription>
       </CardContent>

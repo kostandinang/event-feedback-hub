@@ -4,6 +4,7 @@ import { useState } from "react";
 export type FeedbackRating = {
   rating: number;
   readonly?: boolean;
+  onRating?: (rating: number) => void
 };
 
 export default function FeedbackRating(props: FeedbackRating) {
@@ -12,6 +13,7 @@ export default function FeedbackRating(props: FeedbackRating) {
 
   const handleChange = (value: string) => {
     setRating(value);
+    if (props.onRating) props.onRating(Number.parseInt(value))
   };
 
   return (
@@ -19,7 +21,7 @@ export default function FeedbackRating(props: FeedbackRating) {
       disabled={readonly}
       value={rating}
       onValueChange={handleChange}
-      className={`flex space-x-0`}
+      className={`flex space-x-0 gap-1`}
     >
       {[1, 2, 3, 4, 5].map((star) => (
         <label
@@ -30,11 +32,11 @@ export default function FeedbackRating(props: FeedbackRating) {
           <span
             className={
               rating && parseInt(rating) >= star
-                ? "text-yellow-500"
-                : "text-gray-400"
+                ? "text-yellow-500 text-3xl"
+                : "text-gray-400 text-3xl"
             }
           >
-            ⭐
+            &#9733;
           </span>
         </label>
       ))}

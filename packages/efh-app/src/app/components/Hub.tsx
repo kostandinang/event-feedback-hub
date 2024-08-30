@@ -13,6 +13,7 @@ import { TabsList } from "@radix-ui/react-tabs";
 import { CalendarIcon, StarIcon } from "@radix-ui/react-icons";
 import { useStore } from "../store";
 import { TabId } from "../types";
+import FeedbackForm from "./Feedback/FeedbackForm";
 
 export default function Hub() {
   const { activeTab, setActiveTab } = useStore();
