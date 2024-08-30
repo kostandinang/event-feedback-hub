@@ -1,0 +1,37 @@
+{
+  "name": "efh-core",
+  "version": "1.0.0",
+  "description": "",
+  "author": "kostandinang",
+  "license": "ISC",
+  "type": "module",
+  "engines": {
+    "node": "20.x"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "parcel build ./src/index.ts --dist-dir ./dist",
+    "prisma:seed": "node --loader ts-node/esm prisma/seed.ts",
+    "prisma:migrate": "prisma migrate dev --name init",
+    "prisma:generate": "prisma generate"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.19.0",
+    "@swc/helpers": "^0.5.12",
+    "apollo-server-errors": "^3.3.1",
+    "class-validator": "^0.14.1",
+    "graphql-yoga": "^5.7.0",
+    "prisma": "^5.19.0",
+    "reflect-metadata": "^0.2.2",
+    "ts-node": "^10.9.2",
+    "type-graphql": "^2.0.0-rc.2",
+    "typescript": "^5.5.4",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@parcel/packager-ts": "^2.12.0",
+    "@parcel/transformer-typescript-types": "^2.12.0",
+    "parcel": "^2.12.0"
+  }
+}

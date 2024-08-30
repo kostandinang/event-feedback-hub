@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "declaration": true,
+    "sourceMap": true,
+    "paths": {
+      "@/*": ["src/*"],
+      "efh-core/*": ["packages/efh-core/src/*"]
+    }
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx", "packages/**/*"],
+  "exclude": ["node_modules", "dist"]
+}
